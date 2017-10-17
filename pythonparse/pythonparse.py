@@ -12,6 +12,7 @@ class Parse:
         #self.main()
 
     def start(self):
+        print "test"
         input_query = raw_input("Enter Query: ")
         raw = get("https://www.google.com/search?q=" + input_query).text
         page = fromstring(raw)
