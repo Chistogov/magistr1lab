@@ -5,24 +5,18 @@
 
 
 import hashlib
-from lxml import etree
 from googleapiclient.discovery import build
 
 
 class Parse:    
-    #def __init__(self):
-        #self.main()
         
-    def start(self):
-        print "Hello, can I help you?"
-        input_query = raw_input("Enter Query: ")        
+    def __call__(self, site):        
+        input_query = site    
         results = self.google_results(input_query)
         m = hashlib.md5()
         m.update(input_query)
         fileNamef = m.hexdigest()
         self.compareResults(fileNamef, results)
-        #self.toFile("fileName", "results")
-        print "Success"
 
     def compareResults(self, fileName, results):
         try:
@@ -33,7 +27,6 @@ class Parse:
                     for r in results:
                         out.write(r + "\n")
         else:
-            print('********\nCompare results')
             with file:
                 content = file.readlines()
             content = [x.strip() for x in content] 
@@ -70,6 +63,4 @@ class Parse:
         return results
     
 if __name__ == "__main__":
-    parse = Parse()
-    parse.start()
-    
+    parse = Parse()("ipad")
